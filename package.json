@@ -1,0 +1,52 @@
+{
+    "name": "@voltstack/bravais",
+    "version": "1.0.0",
+    "description": "Bravais - the VOLT design-system primitives",
+    "license": "MIT",
+    "type": "module",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "sideEffects": [
+        "*.css"
+    ],
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js"
+        },
+        "./styles.css": "./dist/styles.css",
+        "./components.css": "./dist/index.css"
+    },
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "tsup",
+        "dev": "tsup --watch",
+        "typecheck": "tsc --noEmit"
+    },
+    "peerDependencies": {
+        "@floating-ui/react": ">=0.27.0",
+        "framer-motion": ">=11.0.0",
+        "lucide-react": ">=0.4.0",
+        "react": ">=18.0.0",
+        "react-dom": ">=18.0.0",
+        "react-router-dom": ">=6.0.0",
+        "recharts": ">=3.0.0"
+    },
+    "devDependencies": {
+        "@floating-ui/react": "^0.27.19",
+        "@types/node": "^22.10.2",
+        "@types/react": "^19.1.2",
+        "@types/react-dom": "^19.1.2",
+        "framer-motion": "^12.23.26",
+        "lucide-react": "^0.553.0",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "react-router-dom": "^7.7.0",
+        "recharts": "^3.4.1",
+        "sileo": "^0.1.5",
+        "tsup": "^8.0.0",
+        "typescript": "~5.8.3"
+    }
+}

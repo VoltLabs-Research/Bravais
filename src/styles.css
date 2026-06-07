@@ -1,0 +1,10 @@
+/*
+ * bravais base stylesheet — design tokens + the utility classes the
+ * primitives emit (Box/Row/Stack/Text/Heading map style props to these).
+ * Import ONCE at your app root:  import 'bravais/styles.css';
+ * Component-specific CSS ships inside the JS bundle and is injected on import.
+ * (App-level resets in base.css are intentionally NOT shipped — that stays the
+ * consuming app's responsibility.)
+ */
+@import './shared/presentation/assets/stylesheets/theme.css';
+@import './shared/presentation/assets/stylesheets/general.css';
