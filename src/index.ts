@@ -153,3 +153,10 @@ export * from '@/shared/presentation/primitives/AsyncBoundary';
 /* ── Utilities ───────────────────────────────────────────────────────────── */
 export { default as VisuallyHidden } from '@/shared/presentation/primitives/VisuallyHidden';
 export * from '@/shared/presentation/primitives/VisuallyHidden';
+
+/* ── Hooks ───────────────────────────────────────────────────────────────── */
+export { default as useMedia } from '@/shared/presentation/hooks/use-media';
+export { usePrefersReducedMotion } from '@/shared/presentation/hooks/use-prefers-reduced-motion';
+export { default as useStepper } from '@/shared/presentation/hooks/use-stepper';
+export { default as useInfiniteScroll } from '@/shared/presentation/hooks/use-infinite-scroll';
+export { default as useKeyboardShortcut } from '@/shared/presentation/hooks/use-keyboard-shortcut';
