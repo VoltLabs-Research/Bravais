@@ -1,6 +1,6 @@
 {
     "name": "@voltstack/bravais",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Bravais - the VOLT design-system primitives",
     "license": "MIT",
     "type": "module",
