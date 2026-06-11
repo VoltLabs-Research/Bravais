@@ -13,10 +13,10 @@ dialog.volt-modal{
     overflow: hidden;
     overscroll-behavior: contain;
     position: relative;
-    transition: 
-        opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), 
-        transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), 
-        overlay 0.2s allow-discrete, 
+    transition:
+        opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+        overlay 0.2s allow-discrete,
         display 0.2s allow-discrete;
 }
 
@@ -40,6 +40,49 @@ dialog.volt-modal[open]{
     dialog.volt-modal[open]{
         opacity: 0;
         transform: scale(0.95);
+    }
+}
+
+/* Right side drawer: full-height panel anchored to the right edge. */
+dialog.volt-modal--right{
+    margin: 0 0 0 auto;
+    max-width: 460px;
+    height: 100dvh;
+    max-height: 100dvh;
+    border-radius: 0;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 0;
+}
+
+dialog.volt-modal--right::before{
+    border-radius: 0;
+}
+
+@starting-style{
+    dialog.volt-modal--right[open]{
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+/* Bottom sheet: full-width panel rising from the bottom edge. */
+dialog.volt-modal--bottom{
+    margin: auto auto 0;
+    max-width: none;
+    width: 100%;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    border-bottom: 0;
+}
+
+dialog.volt-modal--bottom::before{
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+@starting-style{
+    dialog.volt-modal--bottom[open]{
+        opacity: 0;
+        transform: translateY(100%);
     }
 }
 
@@ -73,6 +116,25 @@ dialog.volt-modal[open]::backdrop{
     overflow-y: auto;
     overscroll-behavior: contain;
     padding: 0;
+}
+
+/*
+ * Edge-anchored drawers own the full viewport height, so their body should
+ * grow to fill the panel rather than being capped like a centered modal.
+ */
+dialog.volt-modal--right .volt-modal-body{
+    max-height: none;
+    flex: 1;
+    min-height: 0;
+}
+
+/* The content wrapper must own full height so the body can flex to fill it. */
+dialog.volt-modal--right > div{
+    height: 100%;
+}
+
+dialog.volt-modal--bottom .volt-modal-body{
+    max-height: calc(80dvh - 6rem);
 }
 
 .volt-modal-footer{

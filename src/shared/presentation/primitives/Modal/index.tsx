@@ -15,6 +15,8 @@ declare module 'react' {
 
 type ModalTriggerElement = React.ReactElement<React.ButtonHTMLAttributes<HTMLButtonElement>>;
 
+type ModalPlacement = 'center' | 'right' | 'bottom';
+
 interface ModalProps {
     id: string;
     trigger?: ReactNode;
@@ -27,6 +29,13 @@ interface ModalProps {
     onClose?: () => void;
     dismissible?: boolean;
     lazyMount?: boolean;
+    /**
+     * Where the dialog is anchored. `center` (default) is the classic centered
+     * modal; `right` slides in from the right edge as a full-height side drawer;
+     * `bottom` rises from the bottom edge as a sheet. Edge placements honor
+     * `width` as a max-width (`right`) or are full-width (`bottom`).
+     */
+    placement?: ModalPlacement;
 };
 
 const COARSE_POINTER_MEDIA_QUERY = '(pointer: coarse)';
@@ -82,7 +91,8 @@ const Modal = ({
     width,
     onClose,
     dismissible = true,
-    lazyMount = false
+    lazyMount = false,
+    placement = 'center'
 }: ModalProps) => {
     const [dialogElement, setDialogElement] = useState<HTMLDialogElement | null>(null);
     const [shouldRenderContents, setShouldRenderContents] = useState(!lazyMount);
@@ -194,7 +204,7 @@ const Modal = ({
             <dialog
                 ref={setDialogElement}
                 id={id}
-                className={`volt-modal ${className}`}
+                className={`volt-modal volt-modal--${placement} ${className}`}
                 style={width ? { maxWidth: width } : undefined}
                 onClick={handleBackdropClick}
                 onCancel={handleCancel}
