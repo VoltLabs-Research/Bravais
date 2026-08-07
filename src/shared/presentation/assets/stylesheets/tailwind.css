@@ -1,0 +1,101 @@
+/**
+ * bravais → Tailwind bridge.
+ *
+ * Import this *after* `tailwindcss` in an app that runs Tailwind:
+ *
+ *     @import 'tailwindcss';
+ *     @import '@voltstack/bravais/tailwind.css';
+ *     @source '../node_modules/@voltstack/bravais/dist';
+ *
+ * The `@source` line matters: Tailwind generates a utility only when it finds the
+ * class name as a complete literal in a scanned file, and node_modules is not
+ * scanned by default. bravais's primitives emit their classes from the compiled
+ * bundle, so that bundle has to be a source.
+ *
+ * `@theme inline` is deliberate. Without `inline` Tailwind would emit its own
+ * `--color-*` custom properties into `:root`, which would shadow bravais's tokens
+ * and freeze them at whichever theme was active at build time. With it, the
+ * utility carries `var(--color-…)` straight through, so `bg-surface-2` keeps
+ * following `:root[data-theme]` and light/dark keep working.
+ *
+ * This file is a plain CSS file with no build step. bravais does not depend on
+ * Tailwind — an app that does not use it simply never imports this.
+ */
+
+@theme inline {
+    /* ── Text and surface colours ──────────────────────────────────────────── */
+    --color-primary: var(--color-text-primary);
+    --color-secondary: var(--color-text-secondary);
+    --color-tertiary: var(--color-text-tertiary);
+    --color-muted: var(--color-text-muted);
+
+    --color-brand: var(--color-brand-primary);
+    --color-on-brand: var(--color-on-accent);
+
+    --color-success: var(--status-success);
+    --color-warning: var(--status-warning);
+    --color-danger: var(--status-error);
+    --color-info: var(--status-info);
+
+    --color-page: var(--color-bg);
+    --color-content: var(--color-content-bg);
+    --color-surface-1: var(--color-surface-1);
+    --color-surface-2: var(--color-surface-2);
+    --color-surface-3: var(--color-surface-3);
+    --color-hover: var(--hover-bg);
+    --color-overlay: var(--color-overlay);
+    --color-glass: var(--glass-bg);
+    --color-glass-secondary: var(--glass-bg-secondary);
+
+    /* Borders are colours in Tailwind's model: `border border-soft`. */
+    --color-soft: var(--color-border-soft);
+    --color-edge: var(--color-border);
+    --color-edge-strong: var(--color-border-strong);
+    --color-edge-glass: var(--glass-border);
+
+    /* ── Radii ─────────────────────────────────────────────────────────────── */
+    --radius-xs: var(--radius-xs);
+    --radius-sm: var(--radius-sm);
+    --radius-md: var(--radius-md);
+    --radius-lg: var(--radius-lg);
+    --radius-xl: var(--radius-xl);
+    --radius-2xl: var(--radius-2xl);
+
+    /* ── Type ──────────────────────────────────────────────────────────────── */
+    --font-sans: var(--font-sans);
+    --font-mono: var(--font-mono);
+
+    /*
+     * bravais's own size ramp, not Tailwind's. The names are kept so `text-sm`
+     * still means what every existing call site means by it; the values are
+     * bravais's, so adopting Tailwind changes no pixels.
+     */
+    --text-xs: 0.7rem;
+    --text-sm: 0.75rem;
+    --text-md: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1rem;
+    --text-xl: 1.25rem;
+    --text-2xl: 1.5rem;
+    --text-3xl: 2rem;
+
+    /*
+     * Tailwind pairs every `text-*` with a line-height, and its defaults are
+     * ratios computed against *its* sizes: `--text-sm--line-height` is
+     * `calc(1.25 / .875)`, which is wrong once `--text-sm` is 0.75rem. bravais's
+     * `font-size-*` classes never set line-height at all — it inherited from the
+     * body — so these are pinned to `inherit` to keep that. A component that
+     * wants a specific leading asks for it with `leading-*`.
+     */
+    --text-xs--line-height: inherit;
+    --text-sm--line-height: inherit;
+    --text-md--line-height: inherit;
+    --text-base--line-height: inherit;
+    --text-lg--line-height: inherit;
+    --text-xl--line-height: inherit;
+    --text-2xl--line-height: inherit;
+    --text-3xl--line-height: inherit;
+
+    /* ── Motion ────────────────────────────────────────────────────────────── */
+    --ease-standard: var(--ease-standard);
+}

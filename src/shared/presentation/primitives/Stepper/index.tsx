@@ -189,8 +189,8 @@ const Stepper = forwardRef(function Stepper<K extends string>({
     }
 
     return (
-        <div ref={ref} className='stepper-with-sidebar d-flex overflow-hidden flex-1'>
-            <div className='stepper-sidebar d-flex column gap-05' role='tablist' aria-orientation='vertical'>
+        <div ref={ref} className='stepper-with-sidebar flex overflow-hidden flex-1'>
+            <div className='stepper-sidebar flex flex-col gap-2' role='tablist' aria-orientation='vertical'>
                 {stepIndicators.map((indicator, index) => {
                     const indicatorIndex = steps.findIndex((s) => s.key === indicator.key);
                     const isActive = indicator.key === activeStep;
@@ -213,10 +213,10 @@ const Stepper = forwardRef(function Stepper<K extends string>({
                                 onClick={() => handleIndicatorClick(indicator.key)}
                                 onKeyDown={(event) => handleIndicatorKeyDown(event, index)}
                             >
-                                <div className='stepper-indicator-number d-flex flex-center font-weight-6'>
+                                <div className='stepper-indicator-number flex items-center justify-center font-semibold'>
                                     {index + 1}
                                 </div>
-                                <div className='stepper-indicator-label d-flex column gap-025'>
+                                <div className='stepper-indicator-label flex flex-col gap-1'>
                                     <span className='stepper-indicator-title'>{indicator.label}</span>
                                     {indicator.description && (
                                         <small className='stepper-indicator-desc'>{indicator.description}</small>
@@ -230,7 +230,7 @@ const Stepper = forwardRef(function Stepper<K extends string>({
                     );
                 })}
             </div>
-            <div className='stepper-content y-auto flex-1'>
+            <div className='stepper-content overflow-y-auto flex-1'>
                 {renderStepContent()}
             </div>
         </div>

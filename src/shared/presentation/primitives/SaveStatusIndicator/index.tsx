@@ -42,7 +42,7 @@ const SaveStatusIndicator = forwardRef<HTMLDivElement, SaveStatusIndicatorProps>
             role='status'
             aria-live='polite'
             aria-atomic='true'
-            className={cn('font-size-1', className)}
+            className={cn('text-sm', className)}
             style={errorStyle}
             {...rest}
         >

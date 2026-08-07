@@ -1,12 +1,20 @@
 /**
  * Shared design tokens for Volt primitives.
  *
- * These tokens map 1:1 to utility classes already declared in
- * `src/shared/presentation/assets/stylesheets/general.css` and `base.css`.
- * Primitives MUST NOT emit classes whose CSS definitions don't exist.
+ * A token is a name for a design decision; `buildBoxClasses` and `typography`
+ * translate each one into the Tailwind class that expresses it. Token names are
+ * deliberately *not* class names — `direction='column'` emits `flex-col` — so the
+ * vocabulary this library offers stays independent of the utility layer under it.
+ *
+ * The scale is closed on purpose, but it must be wide enough to be usable: an
+ * audit of VOLT's app CSS found `display: inline-flex` written by hand 46 times,
+ * the nowrap/ellipsis idiom over 100 times, and `color: var(--status-error)` 18
+ * times, every one of them because no token reached it. Anything the scale cannot
+ * name — an arbitrary pixel height, a one-off max-width — belongs in a Tailwind
+ * arbitrary value at the call site, not in a per-component stylesheet.
  */
 
-export type Display = 'flex' | 'grid' | 'block' | 'none';
+export type Display = 'flex' | 'inline-flex' | 'grid' | 'block' | 'none';
 
 export type FlexDirection = 'row' | 'column' | 'row-reverse';
 
@@ -15,22 +23,56 @@ export type AlignItems = 'start' | 'center' | 'end';
 export type JustifyContent = 'start' | 'center' | 'end' | 'between' | 'around';
 
 export type GapToken =
-    | '01' | '02' | '025' | '035' | '05' | '075'
+    | '0' | '01' | '0125' | '02' | '025' | '035' | '0375' | '05' | '0625' | '075'
     | '1' | '1-5' | '2' | '3';
 
 export type PaddingToken = '0' | '025' | '05' | '075' | '1' | '1-5' | '2' | '3';
 
-export type PaddingXToken = '1';
+/**
+ * Asymmetric padding shares the symmetric scale. Panels and rows are padded
+ * tighter vertically than horizontally far more often than not — it was the
+ * single most common shape of hand-written padding in the consuming app — and a
+ * scale that only offered `px='1'` sent every one of those to a stylesheet.
+ */
+export type PaddingXToken = PaddingToken;
 
-export type MarginTopToken = '05' | '1' | '3';
+export type PaddingYToken = PaddingToken;
 
-export type MarginBottomToken = '1-5' | '3';
+export type MarginTopToken = '0' | '025' | '05' | '075' | '1' | '1-5' | '2' | '3';
+
+export type MarginBottomToken = MarginTopToken;
 
 export type MarginXToken = 'auto';
 
 export type RadiusToken = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full';
 
-export type BorderToken = 'soft' | 'none' | 'bottom-soft' | 'top-soft';
+/**
+ * Surface fills, as tokens rather than as `background: var(--…)`.
+ *
+ * Eight values cover ~200 of the hand-written background declarations in the
+ * consuming app: `transparent` and `hover` alone account for over half. An app
+ * that has to write `background: var(--color-surface-2)` by hand also has to
+ * remember which surface level a given depth calls for; a token makes that the
+ * design system's answer.
+ */
+export type BackgroundToken =
+    | 'transparent'
+    | 'hover'
+    | 'bg'
+    | 'content'
+    | 'surface-1' | 'surface-2' | 'surface-3'
+    | 'glass' | 'glass-secondary'
+    | 'overlay';
+
+/**
+ * Borders, per edge and per weight. `1px solid var(--color-border-soft)` and its
+ * bottom-edge variant were the two most repeated declarations in the whole app
+ * corpus (48 and 44 occurrences); `none` and `0` another 58 between them.
+ */
+export type BorderToken =
+    | 'soft' | 'strong' | 'glass' | 'transparent' | 'none'
+    | 'top-soft' | 'bottom-soft' | 'left-soft' | 'right-soft'
+    | 'bottom-glass' | 'bottom-none';
 
 export type PositionToken = 'relative' | 'sticky' | 'absolute' | 'fixed';
 
@@ -42,6 +84,11 @@ export type OverflowToken =
 export type WidthToken = 'max' | '50' | 'vw-max';
 
 export type HeightToken = 'max' | 'vh-max';
+
+/** `.mw-max` / `.mh-max` — the cap that lets a child shrink inside a flex parent. */
+export type MaxWidthToken = 'max';
+
+export type MaxHeightToken = 'max';
 
 export type FlexToken = '1';
 
@@ -55,9 +102,20 @@ export type TextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
 
 export type TextWeight = 'regular' | 'medium' | 'semibold' | 'bold';
 
-export type TextTone = 'primary' | 'secondary' | 'muted' | 'muted-foreground';
+/**
+ * Text tone covers the neutral ramp *and* semantics, because a label reading
+ * "Failed" in `--status-error` is typography, not a status widget, and it should
+ * not need a stylesheet to say so. The names follow {@link StatusTone} so a tone
+ * means the same thing on a `Text` as it does on a `Tag`.
+ */
+export type TextTone =
+    | 'primary' | 'secondary' | 'tertiary' | 'muted' | 'muted-foreground'
+    | 'brand' | 'success' | 'warning' | 'danger' | 'info';
 
 export type TextAlign = 'left' | 'center' | 'right';
+
+/** `.line-height-*` — the shipped set, all of it. */
+export type LineHeightToken = '1' | '1-2' | '1-4' | '5';
 
 export type SurfaceVariant =
     | 'primary'   // primary-surface

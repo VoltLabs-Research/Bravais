@@ -25,8 +25,8 @@ const StatusDot = forwardRef<HTMLSpanElement, StatusDotProps>(({
 }, ref) => {
     const classes = cn(
         'status-dot',
-        'radius-full',
-        'f-shrink-0',
+        'rounded-full',
+        'shrink-0',
         `size-${size}`,
         `status-dot--tone-${tone}`,
         pulse && 'status-dot--pulse',

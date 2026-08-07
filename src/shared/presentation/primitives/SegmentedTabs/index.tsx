@@ -67,7 +67,7 @@ const SegmentedTabs = forwardRef(function SegmentedTabs<TId extends string>({
                             />
                         )}
                         <span className='segmented-tabs__label'>
-                            {tab.icon ? <span className='segmented-tabs__icon d-flex flex-center'>{tab.icon}</span> : null}
+                            {tab.icon ? <span className='segmented-tabs__icon flex items-center justify-center'>{tab.icon}</span> : null}
                             {tab.label}
                         </span>
                     </button>

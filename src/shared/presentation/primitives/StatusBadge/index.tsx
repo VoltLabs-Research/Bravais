@@ -75,12 +75,12 @@ const StatusBadge = forwardRef<HTMLSpanElement, StatusBadgeProps>(({ status, var
 
     const classes = cn(
         'status-badge',
-        'radius-full',
+        'rounded-full',
         `variant-${computedVariant}`,
         size !== 'default' && `size-${size}`,
-        'gap-025',
-        'font-size-1',
-        'font-weight-5',
+        'gap-1',
+        'text-sm',
+        'font-medium',
         className
     );
 

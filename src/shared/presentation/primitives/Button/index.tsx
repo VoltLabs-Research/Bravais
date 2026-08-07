@@ -109,11 +109,11 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
         isLoading && 'is-loading',
         iconOnly && 'icon-only',
         premium && 'premium',
-        'p-relative',
+        'relative',
         'items-center',
-        'content-center',
-        'font-weight-5',
-        'u-select-none',
+        'justify-center',
+        'font-medium',
+        'select-none',
         'cursor-pointer',
         'transition-fast',
         className
@@ -140,14 +140,14 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
     const content = (
         <>
             {isLoading && (
-                <div className="button-loader p-absolute d-flex items-center content-center">
+                <div className="button-loader absolute flex items-center justify-center">
                     <Loader scale={0.6} isFixed={false} />
                 </div>
             )}
 
-            {leftIcon && <span className="button-icon-left font-size-4" aria-hidden='true'>{leftIcon}</span>}
+            {leftIcon && <span className="button-icon-left text-xl" aria-hidden='true'>{leftIcon}</span>}
             {iconOnly ? (
-                <span className='button-icon-only-content d-flex items-center content-center' aria-hidden='true'>
+                <span className='button-icon-only-content flex items-center justify-center' aria-hidden='true'>
                     {children}
                 </span>
             ) : children}

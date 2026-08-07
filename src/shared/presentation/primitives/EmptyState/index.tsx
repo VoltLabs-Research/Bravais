@@ -41,7 +41,7 @@ const EmptyState = forwardRef<HTMLElement, EmptyStateProps>(({
                     </span>
                 )}
                 {icon && (
-                    <Stack align='center' justify='center' className='empty-state-icon color-muted'>
+                    <Stack align='center' justify='center' className='empty-state-icon text-muted'>
                         {icon}
                     </Stack>
                 )}
@@ -60,7 +60,7 @@ const EmptyState = forwardRef<HTMLElement, EmptyStateProps>(({
                         size='sm'
                         onClick={buttonOnClick}
                         isLoading={buttonIsLoading}
-                        className='mt-05'
+                        className='mt-2'
                     >
                         {buttonText}
                     </Button>

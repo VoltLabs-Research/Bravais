@@ -4,7 +4,7 @@ import type { BoxProps } from '../Box';
 import type { ElementType, ReactElement, Ref } from 'react';
 
 /**
- * Vertical flex stack. Defaults to `d-flex column`.
+ * Vertical flex stack. Defaults to `flex flex-col`.
  * Accepts every `Box` style prop.
  */
 export type StackProps<E extends ElementType = 'div'> = Omit<BoxProps<E>, 'display' | 'direction'>;

@@ -8,7 +8,7 @@ export interface SectionLabelProps extends HTMLAttributes<HTMLSpanElement> {
 
 /**
  * Eyebrow / section label. Uppercase, letter-spaced, muted.
- * Replaces ad-hoc `text-uppercase` + `font-size-05` combos.
+ * Replaces ad-hoc `uppercase` + `text-xs` combos.
  */
 const SectionLabel = forwardRef<HTMLSpanElement, SectionLabelProps>(({
     className,

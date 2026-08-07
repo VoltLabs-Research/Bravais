@@ -56,7 +56,7 @@ const PopoverMenuItem = forwardRef<HTMLButtonElement, PopoverMenuItemProps>(({
             size={size}
             block
             align='start'
-            className={`popover-menu-item popover-menu-item--${size} radius-sm color-primary u-select-none cursor-pointer`}
+            className={`popover-menu-item popover-menu-item--${size} rounded-sm text-primary select-none cursor-pointer`}
             onClick={isLoading ? undefined : onClick}
             disabled={disabled || isLoading}
             isLoading={isLoading}
@@ -71,11 +71,11 @@ const PopoverMenuItem = forwardRef<HTMLButtonElement, PopoverMenuItemProps>(({
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
             data-popover-menu-item='true'
-            leftIcon={icon ? <span className='popover-menu-item-icon d-flex items-center content-center f-shrink-0'>{icon}</span> : undefined}
+            leftIcon={icon ? <span className='popover-menu-item-icon flex items-center justify-center shrink-0'>{icon}</span> : undefined}
         >
-            <span className='popover-menu-item-content d-flex items-center content-between gap-05 w-max'>
+            <span className='popover-menu-item-content flex items-center justify-between gap-2 w-full'>
                 <span className='popover-menu-item-label'>{content}</span>
-                {rightAdornment ? <span className='popover-menu-item-adornment d-flex items-center content-center f-shrink-0'>{rightAdornment}</span> : null}
+                {rightAdornment ? <span className='popover-menu-item-adornment flex items-center justify-center shrink-0'>{rightAdornment}</span> : null}
             </span>
         </Button>
     );

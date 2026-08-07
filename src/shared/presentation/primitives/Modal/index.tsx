@@ -217,12 +217,12 @@ const Modal = ({
                 <TopLayerRootContext.Provider value={dialogElement ?? undefined}>
                     <FloatingRootContext.Provider value={dialogElement ?? undefined}>
                         {shouldRenderContents && (
-                            <div className='d-flex column w-max'>
+                            <div className='flex flex-col w-full'>
                                 {(title || description) && (
-                                    <div className='d-flex items-start content-between volt-modal-header'>
-                                        <div className='d-flex column gap-025'>
-                                            {title && <h3 id={titleId} className='font-size-4 font-weight-6'>{title}</h3>}
-                                            {description && <p id={descriptionId} className='font-size-2 color-secondary'>{description}</p>}
+                                    <div className='flex items-start justify-between volt-modal-header'>
+                                        <div className='flex flex-col gap-1'>
+                                            {title && <h3 id={titleId} className='text-xl font-semibold'>{title}</h3>}
+                                            {description && <p id={descriptionId} className='text-md text-secondary'>{description}</p>}
                                         </div>
                                         {dismissible && (
                                             <CloseButton
@@ -239,7 +239,7 @@ const Modal = ({
                                 </div>
 
                                 {footer && (
-                                    <div className='d-flex items-center content-end gap-05 volt-modal-footer'>
+                                    <div className='flex items-center justify-end gap-2 volt-modal-footer'>
                                         {footer}
                                     </div>
                                 )}

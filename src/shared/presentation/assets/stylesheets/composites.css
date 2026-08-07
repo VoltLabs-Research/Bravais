@@ -1,0 +1,175 @@
+/**
+ * What is left of bravais's utility sheet after Tailwind.
+ *
+ * `general.css` hand-rolled 207 rules, and 177 of them were single-purpose
+ * utilities — `.d-flex`, `.gap-05`, `.p-1`, `.color-muted` — every one of which
+ * Tailwind already generates, on a scale that also accepts the arbitrary values
+ * a closed token enum could never hold. Those are gone. `tailwind.css` maps this
+ * design system's tokens into Tailwind's namespaces, so the generated utilities
+ * carry bravais's values rather than Tailwind's defaults and adopting Tailwind
+ * changes no pixels.
+ *
+ * What remains is what a utility layer deliberately cannot express: rules that
+ * bundle several declarations into one named decision, keyframes, and the
+ * reduced-motion opt-out. Every one is referenced by name from the primitives.
+ *
+ * Two things were dropped rather than migrated. The `sm:*` variants had zero
+ * references in either bravais or VOLT, and Tailwind generates responsive
+ * variants natively. `.d-flex.column` existed only because `column` could not
+ * stand alone as a class; Tailwind's `flex-col` can.
+ */
+
+.grid-auto-fit {
+    grid-template-columns: repeat(auto-fit, minmax(var(--grid-min, 180px), 1fr));
+}
+
+.grid-auto-fill {
+    grid-template-columns: repeat(auto-fill, minmax(var(--grid-min, 180px), 1fr));
+}
+
+.text-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+}
+
+.shadow-card {
+    box-shadow: var(--shadow-card);
+}
+
+.shadow-elevated {
+    box-shadow: var(--shadow-elevated);
+}
+
+.shadow-glass {
+    box-shadow: var(--shadow-glass);
+}
+
+.volt-divider {
+    background: var(--color-border-soft);
+}
+
+.volt-divider--horizontal {
+    height: 1px;
+    width: 100%;
+}
+
+.volt-divider--vertical {
+    width: 1px;
+    height: 100%;
+}
+
+@keyframes animate-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+@keyframes animate-pulse-glow {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(0, 0, 0, 0); }
+    50% { opacity: 0.8; box-shadow: 0 0 0 4px currentColor; }
+}
+
+@keyframes animate-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes animate-skeleton {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.7; }
+}
+
+@keyframes animate-fade-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.scrollbar-none {
+    scrollbar-width: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+    display: none;
+}
+
+.center-x {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.focus-ring:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring-shadow);
+}
+
+.screen-vh {
+    min-height: 100dvh;
+}
+
+.transition-fast {
+    transition-property: background-color, border-color, color, box-shadow, opacity, transform;
+    transition-duration: var(--duration-fast);
+    transition-timing-function: var(--ease-standard);
+}
+
+.transition-normal {
+    transition-property: background-color, border-color, color, box-shadow, opacity, transform;
+    transition-duration: var(--duration-normal);
+    transition-timing-function: var(--ease-standard);
+}
+
+.list-item-hoverable {
+    padding: 0.75rem;
+    border-radius: var(--radius-sm);
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .list-item-hoverable:hover {
+        background: var(--color-surface-2);
+    }
+}
+
+.list-item-hoverable:focus-visible {
+    background: var(--color-surface-2);
+    box-shadow: 0 0 0 2px var(--focus-ring);
+}
+
+.list-item-hoverable:active {
+    background: var(--active-bg);
+}
+
+.panel-header-bordered {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--color-border-soft);
+}
+
+.panel-footer-bordered {
+    padding: 0.75rem 1rem;
+    border-top: 1px solid var(--color-border-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .transition-fast,
+    .transition-normal,
+    .list-item-hoverable {
+        transition: none !important;
+    }
+}
+
+.table-scroll-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}

@@ -77,7 +77,7 @@ const Callout = forwardRef<HTMLDivElement, CalloutProps>(({
                 aria-live={resolvedAriaLive}
                 aria-label={resolvedAriaLabel}
             >
-                <Row gap='05' className='font-size-2'>
+                <Row gap='05' className='text-md'>
                     {icon && <span className='volt-callout__icon'>{icon}</span>}
                     <div className='volt-callout__body'>
                         {message ?? children}

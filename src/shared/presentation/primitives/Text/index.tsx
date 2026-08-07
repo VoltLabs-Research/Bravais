@@ -1,7 +1,7 @@
 import { buildTypographyClasses } from '../typography';
 import { forwardRef } from 'react';
 import type { ElementType, HTMLAttributes, ReactNode, Ref } from 'react';
-import type { TextSize, TextWeight, TextTone, TextAlign } from '../types';
+import type { TextSize, TextWeight, TextTone, TextAlign, LineHeightToken } from '../types';
 
 export interface TextProps extends Omit<HTMLAttributes<HTMLElement>, 'children'> {
     as?: 'span' | 'p' | 'div' | 'label' | 'small' | 'strong' | 'em' | 'li';
@@ -10,7 +10,7 @@ export interface TextProps extends Omit<HTMLAttributes<HTMLElement>, 'children'>
     tone?: TextTone;
     align?: TextAlign;
     truncate?: boolean;
-    lineHeight?: '5';
+    lineHeight?: LineHeightToken;
     children?: ReactNode;
     className?: string;
 }

@@ -64,7 +64,7 @@ const CollapsibleSection = forwardRef<HTMLElement, CollapsibleSectionProps>(({
     const isControlled = typeof expanded === 'boolean';
     const actualExpanded = isControlled ? expanded : isExpanded;
     const headerBaseClass = useDefaultHeaderStyles ? 'collapsible-section-header' : '';
-    const titleBaseClass = useDefaultTitleStyles ? 'collapsible-section-title font-weight-6 color-primary' : 'collapsible-section-title';
+    const titleBaseClass = useDefaultTitleStyles ? 'collapsible-section-title font-semibold text-primary' : 'collapsible-section-title';
     const bodyId = `collapsible-section-body-${reactId}`;
     const headingId = `collapsible-section-heading-${reactId}`;
     const triggerId = `collapsible-section-trigger-${reactId}`;
@@ -138,7 +138,7 @@ const CollapsibleSection = forwardRef<HTMLElement, CollapsibleSectionProps>(({
                             <button
                                 id={triggerId}
                                 type='button'
-                                className='collapsible-section-trigger d-flex items-center gap-05 u-select-none'
+                                className='collapsible-section-trigger flex items-center gap-2 select-none'
                                 onClick={handleToggle}
                                 aria-expanded={actualExpanded}
                                 aria-controls={bodyId}
@@ -150,7 +150,7 @@ const CollapsibleSection = forwardRef<HTMLElement, CollapsibleSectionProps>(({
                             {actions}
                             <button
                                 type='button'
-                                className='collapsible-section-chevron-trigger d-flex flex-center color-muted'
+                                className='collapsible-section-chevron-trigger flex items-center justify-center text-muted'
                                 onClick={handleToggle}
                                 aria-expanded={actualExpanded}
                                 aria-controls={bodyId}

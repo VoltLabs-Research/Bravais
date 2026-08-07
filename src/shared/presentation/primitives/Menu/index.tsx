@@ -115,7 +115,7 @@ const Menu = forwardRef<HTMLSpanElement, MenuProps>(({
     const triggerElement = (
         <span
             ref={ref}
-            className={cn('menu-trigger u-select-none cursor-pointer', triggerClassName)}
+            className={cn('menu-trigger select-none cursor-pointer', triggerClassName)}
             role='button'
             tabIndex={isValidElement(triggerNode) ? -1 : 0}
             aria-label={triggerAriaLabel}
@@ -142,7 +142,7 @@ const Menu = forwardRef<HTMLSpanElement, MenuProps>(({
                 <PopoverMenu label={accessibleName} onClose={close}>
                     {actionableItems.length === 0
                         ? (emptyContent ?? (
-                            <Text as='p' size='sm' className='menu-empty color-muted' role='status' aria-live='polite'>
+                            <Text as='p' size='sm' className='menu-empty text-muted' role='status' aria-live='polite'>
                                 No actions available
                             </Text>
                         ))

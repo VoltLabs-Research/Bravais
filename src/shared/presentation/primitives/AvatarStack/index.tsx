@@ -37,7 +37,7 @@ const AvatarStack = forwardRef<HTMLElement, AvatarStackProps>(({ users, maxDispl
                 />
             ))}
             {remainingCount > 0 && (
-                <div className={`avatar-stack-overflow avatar avatar-${size} d-flex flex-center radius-full`}>
+                <div className={`avatar-stack-overflow avatar avatar-${size} flex items-center justify-center rounded-full`}>
                     <Text as='p' weight='bold' className='avatar-initials'>+{remainingCount}</Text>
                 </div>
             )}

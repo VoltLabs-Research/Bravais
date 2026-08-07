@@ -6,7 +6,12 @@ import { dirname, resolve } from 'node:path';
 const srcDir = resolve(dirname(fileURLToPath(import.meta.url)), 'src');
 
 export default defineConfig({
-    entry: { index: 'src/index.ts', styles: 'src/styles.css' },
+    entry: {
+        index: 'src/index.ts',
+        styles: 'src/styles.css',
+        // Opt-in bridge for apps that run Tailwind; see the file's header.
+        tailwind: 'src/shared/presentation/assets/stylesheets/tailwind.css'
+    },
     format: ['esm'],
     dts: { resolve: true },
     splitting: false,

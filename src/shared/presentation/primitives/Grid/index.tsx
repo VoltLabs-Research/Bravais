@@ -6,7 +6,7 @@ import type { CSSProperties, ElementType, ReactElement, Ref } from 'react';
 type GridColumns = 2 | 3 | 4 | 'auto-fit' | 'auto-fill';
 
 /**
- * CSS-grid layout primitive. Defaults to `d-grid` and accepts every `Box` style prop
+ * CSS-grid layout primitive. Defaults to `grid` and accepts every `Box` style prop
  * (gap, padding, etc.). Use `columns` for fixed/auto tracks; `minColumnWidth` tunes the
  * auto-fit/auto-fill minimum track size.
  */

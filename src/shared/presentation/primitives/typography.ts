@@ -1,34 +1,61 @@
 import { cn } from '@/shared/utils/cn';
-import type { TextAlign, TextSize, TextTone, TextWeight } from './types';
+import type { LineHeightToken, TextAlign, TextSize, TextTone, TextWeight } from './types';
+
+/**
+ * Typography tokens → Tailwind classes.
+ *
+ * As with `buildBoxClasses`, every value is a complete literal: Tailwind
+ * generates a utility only for class names its scanner can see whole.
+ *
+ * The size names are Tailwind's but the *values* are bravais's, set in
+ * `tailwind.css` — `text-sm` is 0.75rem here, not Tailwind's 0.875rem. That is
+ * what lets this migration change no pixels while every call site keeps reading
+ * `size='sm'`. Four steps of the ramp have no name on either scale and use
+ * arbitrary values, which is the capability a closed enum never had.
+ */
 
 const sizeMap: Record<TextSize, string> = {
-    xs: 'font-size-05',
-    sm: 'font-size-1',
-    md: 'font-size-2',
-    lg: 'font-size-3',
-    xl: 'font-size-4',
-    '2xl': 'font-size-5',
-    '3xl': 'font-size-6'
+    'xs': 'text-xs',
+    'sm': 'text-sm',
+    'md': 'text-md',
+    'lg': 'text-lg',
+    'xl': 'text-xl',
+    '2xl': 'text-2xl',
+    '3xl': 'text-3xl'
 };
 
 const weightMap: Record<TextWeight, string> = {
-    regular: 'font-weight-4',
-    medium: 'font-weight-5',
-    semibold: 'font-weight-5-5',
-    bold: 'font-weight-6'
+    regular: 'font-normal',
+    medium: 'font-medium',
+    /* 550 sits between Tailwind's medium and semibold and has no name. */
+    semibold: 'font-[550]',
+    bold: 'font-semibold'
 };
 
 const toneMap: Record<TextTone, string> = {
-    primary: 'color-primary',
-    secondary: 'color-secondary',
-    muted: 'color-muted',
-    'muted-foreground': 'color-muted-foreground'
+    'primary': 'text-primary',
+    'secondary': 'text-secondary',
+    'tertiary': 'text-tertiary',
+    'muted': 'text-muted',
+    'muted-foreground': 'text-muted',
+    'brand': 'text-brand',
+    'success': 'text-success',
+    'warning': 'text-warning',
+    'danger': 'text-danger',
+    'info': 'text-info'
 };
 
 const alignMap: Record<TextAlign, string> = {
-    left: '',
+    left: 'text-left',
     center: 'text-center',
     right: 'text-right'
+};
+
+const lineHeightMap: Record<LineHeightToken, string> = {
+    '1': 'leading-none',
+    '1-2': 'leading-[1.2]',
+    '1-4': 'leading-[1.4]',
+    '5': 'leading-normal'
 };
 
 interface TypographyClassOptions {
@@ -37,7 +64,7 @@ interface TypographyClassOptions {
     tone?: TextTone;
     align?: TextAlign;
     truncate?: boolean;
-    lineHeight?: '5';
+    lineHeight?: LineHeightToken;
     className?: string;
 }
 
@@ -54,7 +81,7 @@ export const buildTypographyClasses = ({
     weight ? weightMap[weight] : undefined,
     tone ? toneMap[tone] : undefined,
     align ? alignMap[align] : undefined,
-    truncate ? 'text-truncate' : undefined,
-    lineHeight ? `line-height-${lineHeight}` : undefined,
+    truncate ? 'truncate' : undefined,
+    lineHeight ? lineHeightMap[lineHeight] : undefined,
     className
 );

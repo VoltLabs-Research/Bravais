@@ -180,7 +180,7 @@ const TabsList = forwardRef<HTMLDivElement, TabsListProps>(({
             aria-label={resolvedAriaLabel}
             aria-labelledby={resolvedAriaLabelledBy}
             aria-orientation='horizontal'
-            className={cn('volt-tabs__list', 'd-flex', 'items-end', 'border-bottom-soft', `volt-tabs__list--${size}`, className)}
+            className={cn('volt-tabs__list', 'flex', 'items-end', 'border-b border-soft', `volt-tabs__list--${size}`, className)}
             {...rest}
         >
             {children}
@@ -295,7 +295,7 @@ const Tab = forwardRef<HTMLButtonElement, TabProps>(({
             disabled={disabled}
             className={cn(
                 'volt-tabs__tab',
-                'd-flex',
+                'flex',
                 'items-center',
                 'transition-fast',
                 `volt-tabs__tab--${size}`,
@@ -311,7 +311,7 @@ const Tab = forwardRef<HTMLButtonElement, TabProps>(({
             {...rest}
         >
             {leftIcon && (
-                <span className='volt-tabs__tab-icon d-flex flex-center' aria-hidden='true'>
+                <span className='volt-tabs__tab-icon flex items-center justify-center' aria-hidden='true'>
                     {leftIcon}
                 </span>
             )}

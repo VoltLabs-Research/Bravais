@@ -7,8 +7,8 @@ import type { HTMLAttributes, ReactNode } from 'react';
 export type InlineStatusTone = 'neutral' | 'muted' | 'success' | 'warning' | 'danger';
 
 const toneClass: Record<InlineStatusTone, string> = {
-    neutral: 'color-primary',
-    muted: 'color-muted',
+    neutral: 'text-primary',
+    muted: 'text-muted',
     success: 'status-success',
     warning: 'status-warning',
     danger: 'status-error'
@@ -47,11 +47,11 @@ const InlineStatus = forwardRef<HTMLDivElement, InlineStatusProps>(({
             role={severity}
             aria-live={live}
             aria-atomic='true'
-            className={cn('font-size-1', className)}
+            className={cn('text-sm', className)}
             style={inlineStyle}
             {...rest}
         >
-            {icon && <span className='d-flex items-center' aria-hidden='true'>{icon}</span>}
+            {icon && <span className='flex items-center' aria-hidden='true'>{icon}</span>}
             <Text as='span' size='sm' tone={textTone}>{children}</Text>
         </Row>
     );

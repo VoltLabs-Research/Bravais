@@ -52,7 +52,7 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(({
 
     const classes = [
         'volt-icon-button',
-        'flex-center',
+        'items-center justify-center',
         'transition-fast',
         `volt-icon-button--${variant}`,
         `volt-icon-button--${size}`,

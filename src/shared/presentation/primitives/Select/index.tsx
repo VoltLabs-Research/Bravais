@@ -293,13 +293,13 @@ const Select = forwardRef<HTMLButtonElement | HTMLInputElement, SelectProps>(({
                     onKeyDown: handleOptionKeyDown
                 })}
             >
-                <div className='d-flex column'>
-                    <p className='font-size-2'>
+                <div className='flex flex-col'>
+                    <p className='text-md'>
                         {option.title}
                     </p>
 
                     {option.description && (
-                        <p className='select-option-description color-muted font-size-1'>
+                        <p className='select-option-description text-muted text-sm'>
                             {option.description}
                         </p>
                     )}
@@ -307,7 +307,7 @@ const Select = forwardRef<HTMLButtonElement | HTMLInputElement, SelectProps>(({
 
                 {showSelectionIcon && isSelected && (
                     <svg
-                        className='select-option-check color-muted'
+                        className='select-option-check text-muted'
                         width='16'
                         height='16'
                         viewBox='0 0 24 24'
@@ -362,7 +362,7 @@ const Select = forwardRef<HTMLButtonElement | HTMLInputElement, SelectProps>(({
 
         const label = isMulti ? multiTriggerLabel : (
             selectedOption ? selectedOption.title : (
-                <span className='color-muted'>{placeholder}</span>
+                <span className='text-muted'>{placeholder}</span>
             )
         );
 
@@ -419,7 +419,7 @@ const Select = forwardRef<HTMLButtonElement | HTMLInputElement, SelectProps>(({
                     <FloatingFocusManager context={context} modal={false}>
                         <div
                             ref={refs.setFloating}
-                            className='select-dropdown y-auto glass-bg'
+                            className='select-dropdown overflow-y-auto glass-bg'
                             data-floating-owner-ids={floatingOwnerIdsAttribute}
                             style={floatingStyles}
                             onScroll={handleScroll}
@@ -439,8 +439,8 @@ const Select = forwardRef<HTMLButtonElement | HTMLInputElement, SelectProps>(({
                             {displayOptions.map(renderOption)}
 
                             {isLoading && (
-                                <div className='select-option-loading d-flex items-center content-center'>
-                                    <p className='color-muted font-size-1'>Loading…</p>
+                                <div className='select-option-loading flex items-center justify-center'>
+                                    <p className='text-muted text-sm'>Loading…</p>
                                 </div>
                             )}
                         </div>

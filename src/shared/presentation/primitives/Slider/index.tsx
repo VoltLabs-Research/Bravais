@@ -171,7 +171,7 @@ const Slider = forwardRef<HTMLDivElement, SliderProps>(({
         <div ref={ref} className={`slider slider--ios ${disabled ? 'slider--disabled' : ''} ${className || ''} u-select-none`} style={style} aria-disabled={disabled || undefined} data-disabled={disabled || undefined}>
             <div
                 ref={trackRef}
-                className='slider__track p-relative w-max overflow-hidden cursor-pointer'
+                className='slider__track relative w-full overflow-hidden cursor-pointer'
                 role='slider'
                 aria-valuemin={min}
                 aria-valuemax={max}
@@ -190,15 +190,15 @@ const Slider = forwardRef<HTMLDivElement, SliderProps>(({
                 onMouseEnter={onMouseEnter}
                 onMouseLeave={onMouseLeave}
             >
-                <div className='slider__progress p-absolute inset-0'>
-                    <div className='slider__gloss p-absolute' />
-                    <div className='slider__sheen p-absolute' data-running={isDragging || undefined} />
+                <div className='slider__progress absolute inset-0'>
+                    <div className='slider__gloss absolute' />
+                    <div className='slider__sheen absolute' data-running={isDragging || undefined} />
                     <div
-                        className='slider__aura p-absolute'
+                        className='slider__aura absolute'
                         key={auraPulseKey}
                         data-pulse={auraPulseKey > 0 || undefined}
                     />
-                    <div className='slider__sparkles p-absolute overflow-hidden inset-0'>
+                    <div className='slider__sparkles absolute overflow-hidden inset-0'>
                         <span />
                         <span />
                         <span />
@@ -208,7 +208,7 @@ const Slider = forwardRef<HTMLDivElement, SliderProps>(({
                         <span />
                         <span />
                     </div>
-                    <div className='slider__noise p-absolute inset-0' />
+                    <div className='slider__noise absolute inset-0' />
                 </div>
             </div>
         </div>

@@ -91,7 +91,7 @@ const PopoverMenu = forwardRef<HTMLDivElement, PopoverMenuProps>(({ children, la
     };
 
     return (
-        <div ref={setRefs} className='popover-menu d-flex column gap-025' role='menu' aria-label={label} aria-orientation='vertical' onKeyDown={handleKeyDown}>
+        <div ref={setRefs} className='popover-menu flex flex-col gap-1' role='menu' aria-label={label} aria-orientation='vertical' onKeyDown={handleKeyDown}>
             {children}
         </div>
     );

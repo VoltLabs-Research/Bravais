@@ -45,20 +45,20 @@ const Avatar = forwardRef<HTMLDivElement, AvatarProps>(({
     const altText = alt ?? (user ? `${user.firstName ?? ''} ${user.lastName ?? ''}`.trim() : 'Avatar');
 
     return (
-        <div ref={ref} className={`${cn('avatar', `avatar-${size}`, 'd-flex flex-center radius-full overflow-hidden f-shrink-0 p-relative', className)}`}>
+        <div ref={ref} className={`${cn('avatar', `avatar-${size}`, 'flex items-center justify-center rounded-full overflow-hidden shrink-0 relative', className)}`}>
             {icon ? (
-                <div className='avatar-icon d-flex flex-center'>
+                <div className='avatar-icon flex items-center justify-center'>
                     {icon}
                 </div>
             ) : imageSrc ? (
-                <img src={imageSrc} alt={altText} className='w-max h-max avatar-image' />
+                <img src={imageSrc} alt={altText} className='w-full h-full avatar-image' />
             ) : (
-                <p className='avatar-initials font-weight-6'>
+                <p className='avatar-initials font-semibold'>
                     {initials}
                 </p>
             )}
             {showStatus && (
-                <StatusDot tone={isOnline ? 'success' : 'neutral'} className='avatar-status p-absolute bottom-0 right-0' />
+                <StatusDot tone={isOnline ? 'success' : 'neutral'} className='avatar-status absolute bottom-0 right-0' />
             )}
         </div>
     );

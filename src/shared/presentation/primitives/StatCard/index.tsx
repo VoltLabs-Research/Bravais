@@ -46,8 +46,8 @@ const StatCard = forwardRef<HTMLDivElement, StatCardProps>(({
     const classes = cn(
         'volt-stat-card',
         `volt-stat-card--tone-${tone}`,
-        surface === 'elevated' ? 'card-elevated' : 'b-soft radius-md',
-        'p-1-5',
+        surface === 'elevated' ? 'card-elevated' : 'border border-soft rounded-md',
+        'p-6',
         className
     );
 

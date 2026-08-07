@@ -38,20 +38,20 @@ const Loader = forwardRef<HTMLDivElement, LoaderProps>(({
     const positioningClass = fillParent
         ? 'loader-fill-parent'
         : isFixed
-            ? 'p-fixed inset-0'
+            ? 'fixed inset-0'
             : '';
 
     return (
-        <div ref={ref} className={`d-flex flex-center ${positioningClass} ${className}`} {...accessibilityProps}>
-            <div className='d-flex column items-center gap-2 loader-content'>
-                <div className='p-relative loader-visual' style={{ transform: `scale(${scale})` }}>
+        <div ref={ref} className={`flex items-center justify-center ${positioningClass} ${className}`} {...accessibilityProps}>
+            <div className='flex flex-col items-center gap-8 loader-content'>
+                <div className='relative loader-visual' style={{ transform: `scale(${scale})` }}>
                     {loaderItems.map((item) => (
-                        <div key={item} className={`p-absolute Loader-Item Loader-Item-${item}`} />
+                        <div key={item} className={`absolute Loader-Item Loader-Item-${item}`} />
                     ))}
                 </div>
 
                 {label && (
-                    <span id={statusId} className='loader-label font-size-2 color-secondary text-center line-height-5'>
+                    <span id={statusId} className='loader-label text-md text-secondary text-center leading-normal'>
                         {label}
                     </span>
                 )}

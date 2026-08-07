@@ -4,7 +4,7 @@ import type { BoxProps } from '../Box';
 import type { ElementType, ReactElement, Ref } from 'react';
 
 /**
- * Horizontal flex row. Defaults to `d-flex items-center`.
+ * Horizontal flex row. Defaults to `flex items-center`.
  * Accepts every `Box` style prop plus `reverse`.
  */
 export type RowProps<E extends ElementType = 'div'> = Omit<BoxProps<E>, 'display' | 'direction'> & {

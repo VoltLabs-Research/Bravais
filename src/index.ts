@@ -160,3 +160,15 @@ export { usePrefersReducedMotion } from '@/shared/presentation/hooks/use-prefers
 export { default as useStepper } from '@/shared/presentation/hooks/use-stepper';
 export { default as useInfiniteScroll } from '@/shared/presentation/hooks/use-infinite-scroll';
 export { default as useKeyboardShortcut } from '@/shared/presentation/hooks/use-keyboard-shortcut';
+
+/* ── Formatting and identity helpers ─────────────────────────────────────────
+ *
+ * These were present in `src` but absent from this barrel, so the published
+ * package exported them while a build from source did not. Consumers already
+ * import all nine — the omission only surfaced when the client was pointed at a
+ * source build and nine modules failed to resolve. Re-exported here so the two
+ * cannot diverge again.
+ */
+export * from '@/shared/utils/format';
+export * from '@/shared/utils/user';
+export * from '@/shared/presentation/primitives/Select/multi-select-trigger-label';

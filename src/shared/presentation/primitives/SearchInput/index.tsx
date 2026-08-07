@@ -45,11 +45,11 @@ const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(({
     }
 
     return (
-        <div className={`${cn('search-input-container d-flex items-center gap-05', variant === 'small' && 'search-input-container--small', containerClassName)}`}>
-            <Search aria-hidden='true' className={cn('search-input-icon color-muted f-shrink-0', variant === 'small' && 'search-input-icon--small')} />
-            <div className='search-input-content p-relative flex-1'>
+        <div className={`${cn('search-input-container flex items-center gap-2', variant === 'small' && 'search-input-container--small', containerClassName)}`}>
+            <Search aria-hidden='true' className={cn('search-input-icon text-muted shrink-0', variant === 'small' && 'search-input-icon--small')} />
+            <div className='search-input-content relative flex-1'>
                 {overlayVisible && overlayContent && (
-                    <div className='search-input-overlay d-flex items-center'>
+                    <div className='search-input-overlay flex items-center'>
                         {overlayContent}
                     </div>
                 )}
@@ -62,7 +62,7 @@ const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(({
                     aria-labelledby={resolvedAriaLabelledBy}
                     autoComplete={autoComplete}
                     placeholder={overlayVisible ? '' : (placeholder || 'Search…')}
-                    className={cn('search-input font-size-2 color-primary flex-1', variant === 'small' && 'search-input--small', className, overlayVisible && 'search-input--with-overlay')}
+                    className={cn('search-input text-md text-primary flex-1', variant === 'small' && 'search-input--small', className, overlayVisible && 'search-input--with-overlay')}
                     {...props}
                 />
             </div>
